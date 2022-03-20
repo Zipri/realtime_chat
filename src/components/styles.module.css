@@ -100,6 +100,14 @@
     color: #49b79d;
     background-color: #ffffff;
 }
+.sizeButton {
+    border: 0 solid;
+    margin-right: 6px;
+    background-color: white;
+    color: #49b79d;
+    cursor: pointer;
+    width: 380px;
+}
 /*Message*/
 .messageContainer {
     display: flex;
@@ -122,6 +130,7 @@
     font-size: 20px;
 }
 .messageText {
+    font-size: 20px;
     margin-left: 20px;
     margin-right: 20px;
     padding: 10px;
@@ -130,10 +139,13 @@
     border: 1px solid;
     border-radius: 20px;
 }
+.myMessageText {
+    text-align: right;
+}
 /*Profile*/
 .myField {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-size: 40px;
 }
 .myField text {
@@ -147,15 +159,28 @@
 .profileButton {
     border: 1px solid #49b79d;
     width: 100%;
-    color: white;
+    color: #49b79d;
     font-size: 20px;
-    background-color: #48b69d;
+    background-color: #ffffff;
     cursor: pointer;
+    margin-bottom: 25px;
 }
 .profileButton:hover {
     border: 1px solid #49b79d;
-    color: #49b79d;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #49b79d;
+}
+.inputLogin {
+    margin-top: 15px;
+    height: 40px;
+    width: 260px;
+    font-size: 30px;
+}
+.inputAvatar {
+    margin-top: 15px;
+    height: 40px;
+    width: 380px;
+    font-size: 25px;
 }
 /*Loader*/
 .ldsCircle {
