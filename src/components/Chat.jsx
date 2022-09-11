@@ -20,7 +20,7 @@ const Chat = () => {
     const [messages, loading] = useCollectionData(
         firestore.collection('messages').orderBy('createdAt')
     )
-    useEffect(() => scrollToBottom(), messages)
+    useEffect(() => scrollToBottom(), [messages])
 
     const handleSendMessage = () => {
         firestore.collection('messages').add({
@@ -56,7 +56,7 @@ const Chat = () => {
                                               photo={message.photoURL}
                                               name={message.displayName}
                                               text={message.text}/>)}
-            <div ref={endMessagesRef}></div>
+            <div ref={endMessagesRef}/>
             <button onClick={smallSize} className={s.sizeButton}>small text size</button>
             <button onClick={normalSize} className={s.sizeButton}>normal text size</button>
             <button onClick={bigSize} className={s.sizeButton}>big text size</button>

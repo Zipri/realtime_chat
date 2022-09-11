@@ -16,17 +16,10 @@ const App = () => {
     const [user, loading, error] = useAuthState(auth)
 
     if (loading) return <Loader/>
-    return (
-        <div className="App">
-            <Header/>
-            <AppRouter/>
-        </div>
-    );
+    return <div className="App">
+        <Header/>
+        <AppRouter/>
+    </div>
 };
-
-
-//TODO выложить на хостинг или как там его
-//TODO добавить добавление чего нибудь + D'n'D
-//TODO допилить масштабы
 
 export default App;
