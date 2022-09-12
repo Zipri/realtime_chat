@@ -24,14 +24,16 @@ const Header = () => {
             <div className={s.login}>
                 {user
                     ? <div>
-                        <NavLink to={PROFILE_ROUTE}>
-                            <img src={user.photoURL ? user.photoURL : anonymous} className={s.smallPhoto}/>
+                        <NavLink to={PROFILE_ROUTE} className={s.loginNavLink}>
+                            <img src={user.photoURL ? user.photoURL : anonymous} className={s.smallPhoto}
+                                 alt={"profilePhoto"}/>
                             <text className={s.nickname}>
                                 {user.displayName}
                             </text>
                         </NavLink>
                         <button className={s.headerButton}
-                                onClick={() => auth.signOut()}>Exit</button>
+                                onClick={() => auth.signOut()}>Exit
+                        </button>
                     </div>
                     : <button className={s.headerButton}
                               onClick={() => navigate(LOGIN_ROUTE)}>Login</button>}

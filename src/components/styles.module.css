@@ -37,7 +37,16 @@
     display: flex;
     justify-content: flex-end;
 }
-
+.loginNavLink {
+    padding: 15px 5px 10px 10px;
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+.loginNavLink:hover {
+    background-color: #49b79d;
+    border: 1px solid white;
+}
 .headerButton {
     background-color: #49b79d;
     color: white;

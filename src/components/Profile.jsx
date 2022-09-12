@@ -34,7 +34,8 @@ const Profile = () => {
                 {!editAvatar
                     ? <img src={user.photoURL ? user.photoURL : anonymous}
                            className={s.largePhoto}
-                           onClick={() => setEditAvatar(true)}/>
+                           onClick={() => setEditAvatar(true)}
+                           alt={"ProfilePhoto"}/>
                     : <input autoFocus
                              placeholder="Input URL of your new photo"
                              className={s.inputAvatar}
