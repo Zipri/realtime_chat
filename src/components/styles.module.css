@@ -56,7 +56,6 @@
 
 .nickname {
     margin-right: 5px;
-    font-family: Dubai;
     font-size: 25px;
     color: black;
 }
@@ -88,7 +87,7 @@
 .chatWindow {
     margin-top: 10px;
     width: 100%;
-    height: 100%;
+    height: 87%;
     border: 1px solid #49b79d;
     overflow-y: auto;
     overflow-x: hidden;

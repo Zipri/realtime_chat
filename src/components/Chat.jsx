@@ -45,22 +45,6 @@ const Chat = () => {
         setValue(null)
     }
 
-    const smallSize = () => {
-        messages.map((item, id) => {
-            document.getElementsByClassName(s.messageText)[id].style = "font-size: 15px"
-        })
-    }
-    const normalSize = () => {
-        messages.map((item, id) => {
-            document.getElementsByClassName(s.messageText)[id].style = "font-size: 20px"
-        })
-    }
-    const bigSize = () => {
-        messages.map((item, id) => {
-            document.getElementsByClassName(s.messageText)[id].style = "font-size: 30px"
-        })
-    }
-
     if (loading) return <Loader/>
     return <div className={s.chat}>
         <div className={s.chatWindow} id="element">
@@ -75,9 +59,6 @@ const Chat = () => {
                 editMessage={editMessage}
             />)}
             <div ref={endMessagesRef}/>
-            <button onClick={smallSize} className={s.sizeButton}>small text size</button>
-            <button onClick={normalSize} className={s.sizeButton}>normal text size</button>
-            <button onClick={bigSize} className={s.sizeButton}>big text size</button>
         </div>
         <div className={s.sendBlock}>
             <TextArea placeholder="Write your message here..."
