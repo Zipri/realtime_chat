@@ -23,8 +23,15 @@ const Chat = () => {
         }
     )
     useEffect(() => scrollToBottom(), [messages])
+
     const deleteMessage = (docId) => {
         firestore.collection('messages').doc(docId).delete()
+    }
+
+    const editMessage = (docId, text) => {
+        firestore.collection('messages').doc(docId).update({
+            text: text
+        })
     }
 
     const handleSendMessage = () => {
@@ -64,6 +71,7 @@ const Chat = () => {
                 name={doc.data().displayName}
                 text={doc.data().text}
                 deleteMessage={deleteMessage}
+                editMessage={editMessage}
             />)}
             <div ref={endMessagesRef}/>
             <button onClick={smallSize} className={s.sizeButton}>small text size</button>
