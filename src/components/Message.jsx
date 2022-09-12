@@ -35,7 +35,7 @@ const MessageText = (props) => {
             : <div className={s.messageText}>
                 {props.text}
                 {
-                    props.delete && <div className={s.mButtons}>
+                    props.delete && props.isTimeEditEnd && <div className={s.mButtons}>
                         <Button style={{
                             width: 45,
                             borderRadius: 10,
@@ -58,9 +58,11 @@ const Message = (props) => {
     const {auth} = useContext(Context)
     const [user] = useAuthState(auth)
     const [editMode, setEditMode] = useState(false)
+    const date = Math.ceil(Date.now() * 0.001)
+    const messageDate = props.createdAt == null ? date : props.createdAt.seconds
+    const isTimeEditEnd = date - messageDate < 5000
 
-    return <div className={cn(
-        s.messageContainer, {[s.myMessageContainer]: user.uid === props.id})}>
+    return <div className={cn(s.messageContainer, {[s.myMessageContainer]: user.uid === props.id})}>
         {user.uid === props.id
             ? <div className={s.mBody}>
                 <MessageText editMode={editMode}
@@ -70,6 +72,7 @@ const Message = (props) => {
                              docId={props.docId}
                              deleteMessage={props.deleteMessage}
                              editMessage={props.editMessage}
+                             isTimeEditEnd={isTimeEditEnd}
                              delete={true}/>
                 <PhotoAndName photo={props.photo}/>
             </div>

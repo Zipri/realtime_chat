@@ -70,6 +70,7 @@ const Chat = () => {
                 photo={doc.data().photoURL}
                 name={doc.data().displayName}
                 text={doc.data().text}
+                createdAt={doc.data().createdAt}
                 deleteMessage={deleteMessage}
                 editMessage={editMessage}
             />)}
