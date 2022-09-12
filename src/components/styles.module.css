@@ -184,52 +184,42 @@
 }
 
 /*Profile*/
-.myField {
-    display: flex;
-    margin-bottom: 5px;
-    font-size: 40px;
+.profileWrapper {
+    position: absolute;
+    left: 45%;
+    top: 10%;
 }
+.noGooglePhoto {
+    width: 200px;
+    height: min-content;
+    padding: 10px;
 
-.myField text {
-    margin-right: 10px;
-    color: #49b79d;
+    border: 1px solid #48b69d;
+    border-radius: 20px;
+
+    text-align: justify;
+    font-size: 18px;
 }
-
-.largePhoto {
-    height: 300px;
-    width: 300px;
-}
-
-.profileButton {
-    border: 1px solid #49b79d;
-    width: 100%;
-    color: #49b79d;
-    font-size: 20px;
-    background-color: #ffffff;
-    cursor: pointer;
-    margin-bottom: 25px;
-}
-
-.profileButton:hover {
-    border: 1px solid #49b79d;
-    color: #ffffff;
-    background-color: #49b79d;
-}
-
-.inputLogin {
-    margin-top: 15px;
-    height: 40px;
-    width: 260px;
-    font-size: 30px;
-}
-
-.inputAvatar {
-    margin-top: 15px;
-    height: 40px;
-    width: 380px;
+.displayName {
     font-size: 25px;
 }
-
+.email {
+    font-size: 20px;
+}
+.linkEditProfile {
+    margin-top: 20px;
+}
+.linkEditProfile a {
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    border: 1px solid #48b69d;
+}
+.linkEditProfile a:hover {
+    padding: 10px;
+    color: white;
+    background-color: #48b69d;
+}
 /*Loader*/
 .ldsCircle {
     display: inline-block;

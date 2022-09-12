@@ -25,7 +25,9 @@ const Header = () => {
                 {user
                     ? <div>
                         <NavLink to={PROFILE_ROUTE} className={s.loginNavLink}>
-                            <img src={user.photoURL ? user.photoURL : anonymous} className={s.smallPhoto}
+                            <img src={user.photoURL && !user.photoURL.includes("google")
+                                ? user.photoURL
+                                : anonymous} className={s.smallPhoto}
                                  alt={"profilePhoto"}/>
                             <text className={s.nickname}>
                                 {user.displayName}

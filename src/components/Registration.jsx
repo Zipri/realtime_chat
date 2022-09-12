@@ -37,8 +37,6 @@ const Registration = () => {
                    onChange={(e) => setLogin(e.target.value)}
                    placeholder="Enter login"/>
             <Input type="password"
-                   placeholder="Enter password"/>
-            <Input type="password"
                    value={password}
                    onChange={(e) => setPassword(e.target.value)}
                    placeholder="Repeat password"/>

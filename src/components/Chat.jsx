@@ -8,6 +8,7 @@ import Loader from "./Loader";
 import Message from "./Message";
 
 import s from './styles.module.css'
+import anonymous from '../assets/anonymous.png'
 
 
 const Chat = () => {
@@ -48,16 +49,22 @@ const Chat = () => {
     if (loading) return <Loader/>
     return <div className={s.chat}>
         <div className={s.chatWindow} id="element">
-            {messages.docs.map((doc) => <Message
-                id={doc.data().uid}
-                docId={doc.id}
-                photo={doc.data().photoURL}
-                name={doc.data().displayName}
-                text={doc.data().text}
-                createdAt={doc.data().createdAt}
-                deleteMessage={deleteMessage}
-                editMessage={editMessage}
-            />)}
+            {messages.docs.map((doc) => {
+                const photo = doc.data().photoURL && !doc.data().photoURL.includes("google")
+                    ? doc.data().photoURL
+                    : anonymous
+                //из-за проблем с гуглом - не отображается фото, поэтому заглушка
+                return <Message
+                    id={doc.data().uid}
+                    docId={doc.id}
+                    photo={photo}
+                    name={doc.data().displayName}
+                    text={doc.data().text}
+                    createdAt={doc.data().createdAt}
+                    deleteMessage={deleteMessage}
+                    editMessage={editMessage}
+                />
+            })}
             <div ref={endMessagesRef}/>
         </div>
         <div className={s.sendBlock}>

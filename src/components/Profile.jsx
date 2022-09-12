@@ -4,65 +4,50 @@ import {Context} from "../index";
 import Loader from "./Loader";
 import s from "./styles.module.css";
 import anonymous from "../assets/anonymous.png";
+import {Button} from "antd";
+
+const ProfileInfo = (props) => <div>
+    <div>
+        {props.photoURL.includes("google")
+            ? <div className={s.noGooglePhoto}>
+                There is some problem with google photo in Russia now so you can't see your avatar
+            </div>
+            : <img src={props.photo} alt={"photoURL"}/>}
+    </div>
+    <div className={s.displayName}>
+        {props.displayName}
+    </div>
+    <div className={s.email}>
+        {props.email}
+    </div>
+</div>
+
+const EditProfileInfo = (props) => <div>123</div>
 
 const Profile = () => {
-    const [editMode, setEditMode] = useState(false)
-    const [editAvatar, setEditAvatar] = useState(false)
     const {firebase, auth, firestore} = useContext(Context)
     const [user, loading] = useAuthState(auth)
-    const [login, setLogin] = useState(user.displayName);
-    const [photoURL, setPhotoURL] = useState(null);
-    useEffect(() => <Loader/>, [user])
+    const [editMode, setEditMode] = useState(false)
 
-    const changeAvatar = async (photoURL) => {
-        await firebase.auth().currentUser.updateProfile({photoURL: photoURL})
-        window.location.reload()
+    const photo = user.photoURL ? user.photoURL : anonymous
+    const saveInfo = () => {
+        setEditMode(false)
     }
-    const handleChangeAvatar = () => changeAvatar(photoURL)
-    const changeLogin = async (displayName) => {
-        await firebase.auth().currentUser.updateProfile({displayName: displayName})
-        window.location.reload()
-    }
-    const handleChangeLogin = () => changeLogin(login)
-    const handleCopy = () => copyEmail()
-    const copyEmail = () => navigator.clipboard.writeText(user.email)
 
     if (loading) return <Loader/>
-    return <div className={s.block}>
-        <div className={s.inside}>
-            <div className={s.myField}>
-                {!editAvatar
-                    ? <img src={user.photoURL ? user.photoURL : anonymous}
-                           className={s.largePhoto}
-                           onClick={() => setEditAvatar(true)}
-                           alt={"ProfilePhoto"}/>
-                    : <input autoFocus
-                             placeholder="Input URL of your new photo"
-                             className={s.inputAvatar}
-                             onBlur={() => setEditAvatar(false)}
-                             onChange={(e) => setPhotoURL(e.target.value)}/>}
-            </div>
-            <button className={s.profileButton} onClick={handleChangeAvatar}>Change Avatar</button>
-
-            <div className={s.myField}>
-                <text>Login:</text>
-                {!editMode
-                    ? <div onClick={() => setEditMode(true)}>{user.displayName}</div>
-                    : <input autoFocus
-                             className={s.inputLogin}
-                             value={login}
-                             onBlur={() => setEditMode(false)}
-                             onChange={(e) => setLogin(e.target.value)}/>}
-            </div>
-            <button className={s.profileButton} onClick={handleChangeLogin}>Change Login</button>
-
-            <div className={s.myField}>
-                <text id="Email">Email:</text>
-                {user.email}
-            </div>
-            <button className={s.profileButton} onClick={handleCopy}>Copy Email</button>
-        </div>
+    return <div className={s.profileWrapper}>
+        {editMode
+            ? <EditProfileInfo/>
+            : <ProfileInfo photoURL={user.photoURL} photo={photo}
+                           displayName={user.displayName} email={user.email}/>}
+        {user.providerData[0].providerId !== 'google.com'
+            ? <button>Edit Info</button>
+            : <div className={s.linkEditProfile}>
+                <a href={"https://myaccount.google.com/personal-info"}
+                   target={"_blank"}>Visit Google to edit information</a>
+            </div>}
     </div>
 };
+
 
 export default Profile;
