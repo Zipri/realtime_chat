@@ -26,7 +26,7 @@ const MessageText = (props) => <div>
             <Button style={{
                 width: 45,
                 borderRadius: 10,
-            }}>🗑</Button>
+            }} onClick={() => props.deleteMessage(props.docId)}>🗑</Button>
         </div>}
     </div>
     <div className={s.name}>
@@ -42,7 +42,11 @@ const Message = (props) => {
         s.messageContainer, {[s.myMessageContainer]: user.uid === props.id})}>
         {user.uid === props.id
             ? <div className={s.mBody}>
-                <MessageText text={props.text} name={props.name} delete={true}/>
+                <MessageText text={props.text}
+                             name={props.name}
+                             docId={props.docId}
+                             deleteMessage={props.deleteMessage}
+                             delete={true}/>
                 <PhotoAndName photo={props.photo}/>
             </div>
             : <div className={s.mBody}>

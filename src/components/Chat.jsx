@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {Context} from "../index";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {useCollectionData} from "react-firebase-hooks/firestore";
+import {useCollection, useCollectionData} from "react-firebase-hooks/firestore";
 import TextArea from "antd/es/input/TextArea";
 
 import Loader from "./Loader";
@@ -17,10 +17,15 @@ const Chat = () => {
     const {firebase, auth, firestore} = useContext(Context)
     const [user] = useAuthState(auth)
     const [value, setValue] = useState(null)
-    const [messages, loading] = useCollectionData(
-        firestore.collection('messages').orderBy('createdAt')
+    const [messages, loading, error] = useCollection(
+        firestore.collection('messages').orderBy('createdAt'), {
+            snapshotListenOptions: {includeMetadataChanges: true},
+        }
     )
     useEffect(() => scrollToBottom(), [messages])
+    const deleteMessage = (docId) => {
+        firestore.collection('messages').doc(docId).delete()
+    }
 
     const handleSendMessage = () => {
         firestore.collection('messages').add({
@@ -35,27 +40,31 @@ const Chat = () => {
 
     const smallSize = () => {
         messages.map((item, id) => {
-            document.getElementsByClassName(s.messageText)[id].style= "font-size: 15px"
+            document.getElementsByClassName(s.messageText)[id].style = "font-size: 15px"
         })
     }
     const normalSize = () => {
         messages.map((item, id) => {
-            document.getElementsByClassName(s.messageText)[id].style= "font-size: 20px"
+            document.getElementsByClassName(s.messageText)[id].style = "font-size: 20px"
         })
     }
     const bigSize = () => {
         messages.map((item, id) => {
-            document.getElementsByClassName(s.messageText)[id].style= "font-size: 30px"
+            document.getElementsByClassName(s.messageText)[id].style = "font-size: 30px"
         })
     }
 
     if (loading) return <Loader/>
     return <div className={s.chat}>
         <div className={s.chatWindow} id="element">
-            {messages.map(message => <Message id={message.uid}
-                                              photo={message.photoURL}
-                                              name={message.displayName}
-                                              text={message.text}/>)}
+            {messages.docs.map((doc) => <Message
+                id={doc.data().uid}
+                docId={doc.id}
+                photo={doc.data().photoURL}
+                name={doc.data().displayName}
+                text={doc.data().text}
+                deleteMessage={deleteMessage}
+            />)}
             <div ref={endMessagesRef}/>
             <button onClick={smallSize} className={s.sizeButton}>small text size</button>
             <button onClick={normalSize} className={s.sizeButton}>normal text size</button>
