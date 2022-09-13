@@ -124,7 +124,9 @@
     border: 1px solid #49b79d;
     border-radius: 0 0 20px 0;
 }
-
+.blockedButton {
+    cursor: no-drop;
+}
 .sendButton:hover {
     color: #49b79d;
     background-color: #ffffff;

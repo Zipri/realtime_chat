@@ -9,6 +9,7 @@ import Message from "./Message";
 
 import s from './styles.module.css'
 import anonymous from '../assets/anonymous.png'
+import cn from "classnames";
 
 
 const Chat = () => {
@@ -45,7 +46,7 @@ const Chat = () => {
         })
         setValue(null)
     }
-
+    console.log(value)
     if (loading) return <Loader/>
     return <div className={s.chat}>
         <div className={s.chatWindow} id="element">
@@ -68,12 +69,12 @@ const Chat = () => {
             <div ref={endMessagesRef}/>
         </div>
         <div className={s.sendBlock}>
-            <textArea placeholder="Write your message here..."
+            <textarea placeholder="Write your message here..."
                       className={s.sendTextArea}
                       value={value}
-                      onPressEnter={handleSendMessage}
-                      onChange={(e) => setValue(e.target.value)}/>
-            <button className={s.sendButton}
+                      onChange={(e) => setValue(e.target.value.replace(/ +/g, ' ').trim())}/>
+            <button className={cn(s.sendButton, {[s.blockedButton]: !value})}
+                    disabled={!value}
                     onClick={handleSendMessage}>Send
             </button>
         </div>
