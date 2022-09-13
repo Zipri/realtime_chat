@@ -68,7 +68,8 @@ const Chat = () => {
             <div ref={endMessagesRef}/>
         </div>
         <div className={s.sendBlock}>
-            <TextArea placeholder="Write your message here..."
+            <textArea placeholder="Write your message here..."
+                      className={s.sendTextArea}
                       value={value}
                       onPressEnter={handleSendMessage}
                       onChange={(e) => setValue(e.target.value)}/>

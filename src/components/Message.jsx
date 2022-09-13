@@ -17,7 +17,7 @@ const MessageText = (props) => {
     const [value, setValue] = useState(props.text)
     return <div>
         {props.editMode && props.delete
-            ? <input className={s.messageText}
+            ? <textarea className={s.editMessage}
                      value={value.toString()}
                      onChange={(e) => setValue(e.target.value)}
                      autoFocus={true}
@@ -32,9 +32,8 @@ const MessageText = (props) => {
                          props.setEditMode(false)
                      }}/>
             : <div className={s.messageText}>
-                {props.text}
-                {
-                    props.delete && props.isTimeEditEnd && <div className={s.mButtons}>
+                <text>{props.text}</text>
+                {props.delete && props.isTimeEditEnd && <div className={s.mButtons}>
                         <Button style={{
                             width: 45,
                             borderRadius: 10,
@@ -44,11 +43,15 @@ const MessageText = (props) => {
                             width: 45,
                             borderRadius: 10,
                         }} onClick={() => props.deleteMessage(props.docId)}>🗑</Button>
-                    </div>
-                }
+                    </div>}
             </div>}
-        <div className={s.name}>
-            {props.name}
+        <div className={s.underMessage}>
+            <div className={s.name}>
+                {props.name}
+            </div>
+            <div className={s.messageTime}>
+                {props.timeDate}
+            </div>
         </div>
     </div>
 }
@@ -60,6 +63,10 @@ const Message = (props) => {
     const date = Math.ceil(Date.now() * 0.001)
     const messageDate = props.createdAt == null ? date : props.createdAt.seconds
     const isTimeEditEnd = date - messageDate < 5000
+    const tm = new Date(props.createdAt * 1000)
+    const timeDate = tm.getHours().toString()+':'+tm.getMinutes().toString()+' '
+        +tm.toDateString().split(' ')[1]+'/'+tm.toDateString().split(' ')[2]
+
 
     return <div className={cn(s.messageContainer, {[s.myMessageContainer]: user.uid === props.id})}>
         {user.uid === props.id
@@ -72,13 +79,14 @@ const Message = (props) => {
                              deleteMessage={props.deleteMessage}
                              editMessage={props.editMessage}
                              isTimeEditEnd={isTimeEditEnd}
+                             timeDate={timeDate}
                              delete={true}/>
                 <PhotoAndName photo={props.photo}/>
             </div>
             : <div className={s.mBody}>
                 <PhotoAndName photo={props.photo}/>
                 <MessageText editMode={editMode} setEditMode={setEditMode}
-                             text={props.text} name={props.name}/>
+                             text={props.text} name={props.name} timeDate={timeDate}/>
             </div>}
     </div>
 };

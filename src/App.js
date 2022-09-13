@@ -22,4 +22,7 @@ const App = () => {
     </div>
 };
 
+//TODO модальное окно для профиля
+//TODO HOC для всех инпутов
+
 export default App;

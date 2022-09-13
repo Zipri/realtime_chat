@@ -37,16 +37,19 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .loginNavLink {
     padding: 15px 5px 10px 10px;
     background-color: white;
     border-radius: 10px;
     margin-right: 5px;
 }
+
 .loginNavLink:hover {
     background-color: #49b79d;
     border: 1px solid white;
 }
+
 .headerButton {
     background-color: #49b79d;
     color: white;
@@ -98,26 +101,28 @@
     width: 100%;
     height: 87%;
     border: 1px solid #49b79d;
+    border-radius: 20px 20px 0 0;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .sendBlock {
     display: flex;
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
     height: 100px;
-    border: 1px solid #49b79d;
+    border-radius: 20px 0 0 20px;
 }
 
 .sendButton {
     height: 100%;
     width: 70px;
-    border: 0 solid;
     color: white;
     font-size: 20px;
     background-color: #48b69d;
     cursor: pointer;
+    border: 1px solid #49b79d;
+    border-radius: 0 0 20px 0;
 }
 
 .sendButton:hover {
@@ -125,13 +130,19 @@
     background-color: #ffffff;
 }
 
-.sizeButton {
-    border: 0 solid;
-    margin-right: 6px;
-    background-color: white;
-    color: #49b79d;
-    cursor: pointer;
-    width: 380px;
+.sendTextArea {
+    width: 100%;
+    resize: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 0 0 0 20px;
+    border: 1px solid #49b79d;
+}
+.sendTextArea::-webkit-scrollbar {
+    width: 5px;
+}
+.sendTextArea::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #8be1cb, #48b69d);
 }
 
 /*Message*/
@@ -158,9 +169,39 @@
     border-radius: 20px;
 }
 
+.underMessage {
+    display: flex;
+    justify-content: space-between;
+}
+
 .name {
     margin-left: 25px;
     font-size: 20px;
+}
+
+.messageTime {
+    margin-right: 25px;
+    margin-left: 25px;
+    font-size: 20px;
+    color: #429a8a;
+}
+
+.editMessage {
+    width: 600px;
+    height: 100%;
+
+    font-size: 20px;
+
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+.editMessage::-webkit-scrollbar {
+    border: 0;
 }
 
 .messageText {
@@ -179,6 +220,12 @@
     border-radius: 20px;
 }
 
+.messageText text {
+    max-width: 600px;
+    height: 100%;
+    word-wrap: break-word;
+}
+
 .mButtons {
     margin-left: 20px;
 }
@@ -189,6 +236,7 @@
     left: 45%;
     top: 10%;
 }
+
 .noGooglePhoto {
     width: 200px;
     height: min-content;
@@ -200,26 +248,32 @@
     text-align: justify;
     font-size: 18px;
 }
+
 .displayName {
     font-size: 25px;
 }
+
 .email {
     font-size: 20px;
 }
+
 .linkEditProfile {
     margin-top: 20px;
 }
+
 .linkEditProfile a {
     border-radius: 10px;
     padding: 10px;
     color: black;
     border: 1px solid #48b69d;
 }
+
 .linkEditProfile a:hover {
     padding: 10px;
     color: white;
     background-color: #48b69d;
 }
+
 /*Loader*/
 .ldsCircle {
     display: inline-block;
