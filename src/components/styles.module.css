@@ -201,6 +201,9 @@
     border: 1px solid;
     border-radius: 20px;
 }
+.emptyArea {
+    border: 2px solid red;
+}
 
 .editMessage::-webkit-scrollbar {
     border: 0;

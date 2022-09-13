@@ -44,7 +44,7 @@ const Chat = () => {
             text: value,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
-        setValue(null)
+        setValue('');
     }
     console.log(value)
     if (loading) return <Loader/>
@@ -72,7 +72,10 @@ const Chat = () => {
             <textarea placeholder="Write your message here..."
                       className={s.sendTextArea}
                       value={value}
-                      onChange={(e) => setValue(e.target.value.replace(/ +/g, ' ').trim())}/>
+
+                      onChange={(e) =>
+                          setValue(e.target.value
+                              .replace(/ +/g, ' ').trim())}/>
             <button className={cn(s.sendButton, {[s.blockedButton]: !value})}
                     disabled={!value}
                     onClick={handleSendMessage}>Send
