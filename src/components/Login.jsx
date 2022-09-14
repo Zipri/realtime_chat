@@ -23,11 +23,12 @@ const Login = () => {
 
     const handleLoginEmail = () => LoginEmail(email, password)
     const LoginEmail = async (email, password) => {
-        await auth.signInWithEmailAndPassword(email, password).catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-        })
+        await auth.signInWithEmailAndPassword(email, password)
+            .catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
+            })
     }
 
     return <div className={s.block}>
@@ -42,7 +43,9 @@ const Login = () => {
                        value={password}
                        onChange={(e) => setPassword(e.target.value)}
                        placeholder="Enter password"/>
-                <Button className={s.size} onClick={handleLoginEmail}>Login</Button>
+                <Button className={s.size}
+                        disabled={!(email && password)}
+                        onClick={handleLoginEmail}>Login</Button>
                 <h1>or <NavLink to="/registration">take registration</NavLink></h1>
             </div>
             <div className={s.loginForm}>

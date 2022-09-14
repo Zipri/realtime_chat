@@ -38,14 +38,16 @@
     justify-content: flex-end;
 }
 
-.loginNavLink {
-    padding: 15px 5px 10px 10px;
+.openProfileButton {
+    height: 45px;
+    border: 0;
+    cursor: pointer;
+    margin-right: 10px;
     background-color: white;
     border-radius: 10px;
-    margin-right: 5px;
 }
 
-.loginNavLink:hover {
+.openProfileButton:hover {
     background-color: #49b79d;
     border: 1px solid white;
 }
@@ -191,6 +193,7 @@
 .editMessage {
     width: 600px;
     height: 100%;
+    resize: none;
 
     font-size: 20px;
 
@@ -237,17 +240,34 @@
 
 /*Profile*/
 .profileWrapper {
-    position: absolute;
-    left: 45%;
-    top: 10%;
-}
+    background-color: #49b79d;
+    border-radius: 20px;
 
-.noGooglePhoto {
+    height: min-content;
+    min-width: min-content;
+
+    padding: 20px;
+
+    position: absolute;
+    left: 5%;
+    top: 7%;
+}
+.userPhotoBody {
+    display: flex;
+    justify-content: center;
+}
+.userPhoto {
     width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
+.noGooglePhoto {
+    width: 220px;
     height: min-content;
     padding: 10px;
+    color: white;
 
-    border: 1px solid #48b69d;
+    border: 1px solid white;
     border-radius: 20px;
 
     text-align: justify;
@@ -255,28 +275,72 @@
 }
 
 .displayName {
+    padding: 10px;
+    margin-top: 5px;
+
     font-size: 25px;
+
+    background-color: white;
+    border-radius: 10px;
 }
 
 .email {
+    padding: 10px;
+    margin-top: 5px;
+
     font-size: 20px;
+
+    background-color: white;
+    border-radius: 10px;
+}
+.saveNewProfileButton {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: white;
+    color: #49b79d;
+    padding: 5px;
+    font-size: 20px;
+}
+.saveNewProfileButton:hover {
+    border: 1px solid white;
+    background-color: #49b79d;
+    color: white;
+}
+.editProfileButton {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #49b79d;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+.editProfileButton:hover {
+    border: 1px solid #49b79d;
+    background-color: white;
+    color: #49b79d;
 }
 
 .linkEditProfile {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .linkEditProfile a {
     border-radius: 10px;
     padding: 10px;
-    color: black;
-    border: 1px solid #48b69d;
+    color: white;
+    border: 1px solid white;
 }
 
 .linkEditProfile a:hover {
     padding: 10px;
-    color: white;
-    background-color: #48b69d;
+    color: black;
+    background-color: white;
 }
 
 /*Loader*/

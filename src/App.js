@@ -24,5 +24,6 @@ const App = () => {
 
 //TODO модальное окно для профиля
 //TODO HOC для всех инпутов
+//TODO убрать AppRouter
 
 export default App;

@@ -31,16 +31,18 @@ const Registration = () => {
             <Input type="email"
                    value={email}
                    onChange={(e) => setEmail(e.target.value)}
-                   placeholder="Enter e-mail"/>
+                   placeholder="* Enter e-mail"/>
             <Input type="login"
                    value={login}
                    onChange={(e) => setLogin(e.target.value)}
-                   placeholder="Enter login"/>
+                   placeholder="* Enter login"/>
             <Input type="password"
                    value={password}
                    onChange={(e) => setPassword(e.target.value)}
-                   placeholder="Repeat password"/>
-            <Button className={s.size} onClick={handleRegistrationEmail}>Registration</Button>
+                   placeholder="* Enter password"/>
+            <Button className={s.size}
+                    disabled={!(email && password && login)}
+                    onClick={handleRegistrationEmail}>Registration</Button>
         </div>
     </div>
 };

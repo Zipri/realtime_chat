@@ -46,7 +46,7 @@ const Chat = () => {
         })
         setValue('');
     }
-    console.log(value)
+
     if (loading) return <Loader/>
     return <div className={s.chat}>
         <div className={s.chatWindow} id="element">
@@ -72,7 +72,6 @@ const Chat = () => {
             <textarea placeholder="Write your message here..."
                       className={s.sendTextArea}
                       value={value}
-
                       onChange={(e) =>
                           setValue(e.target.value
                               .replace(/ +/g, ' ').trim())}/>
