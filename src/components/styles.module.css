@@ -52,6 +52,20 @@
     border: 1px solid white;
 }
 
+.closeProfileButton {
+    height: 45px;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: #49b79d;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+.closeProfileButton:hover {
+    background-color: white;
+    border: 1px solid red;
+}
+
 .headerButton {
     background-color: #49b79d;
     color: white;
@@ -80,6 +94,7 @@
     height: 25px;
     width: 25px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 /*Login*/
@@ -170,6 +185,7 @@
 .photo {
     width: 80px;
     height: 80px;
+    object-fit: cover;
     border-radius: 20px;
 }
 
@@ -257,8 +273,8 @@
     justify-content: center;
 }
 .userPhoto {
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 20px;
 }
 .noGooglePhoto {
@@ -295,7 +311,7 @@
 }
 .saveNewProfileButton {
     width: 100%;
-    margin-top: 5px;
+    margin-bottom: 15px;
     border: 1px solid white;
     border-radius: 10px;
     cursor: pointer;
@@ -308,6 +324,9 @@
     border: 1px solid white;
     background-color: #49b79d;
     color: white;
+}
+.saveNewProfileButton:disabled {
+    cursor: no-drop;
 }
 .editProfileButton {
     width: 100%;
@@ -325,6 +344,22 @@
     background-color: white;
     color: #49b79d;
 }
+.closeEditProfileButton {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid red;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #49b79d;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+.closeEditProfileButton:hover {
+    border: 1px solid red;
+    background-color: white;
+    color: red;
+}
 
 .linkEditProfile {
     margin-top: 15px;
@@ -341,6 +376,32 @@
     padding: 10px;
     color: black;
     background-color: white;
+}
+
+.inputFileBody {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #49b79d;
+}
+.inputFile {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+.inputFileSpan {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+.inputFileSpan:hover {
+    border: 1px solid white;
+    background-color: #49b79d;
+    color: white;
 }
 
 /*Loader*/

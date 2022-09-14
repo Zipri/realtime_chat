@@ -41,7 +41,7 @@ const Chat = () => {
             uid: user.uid,
             displayName: user.displayName,
             photoURL: user.photoURL,
-            text: value,
+            text: value.replace(/ +/g, ' ').trim(),
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         })
         setValue('');
@@ -72,9 +72,7 @@ const Chat = () => {
             <textarea placeholder="Write your message here..."
                       className={s.sendTextArea}
                       value={value}
-                      onChange={(e) =>
-                          setValue(e.target.value
-                              .replace(/ +/g, ' ').trim())}/>
+                      onChange={(e) => setValue(e.target.value)}/>
             <button className={cn(s.sendButton, {[s.blockedButton]: !value})}
                     disabled={!value}
                     onClick={handleSendMessage}>Send

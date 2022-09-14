@@ -9,6 +9,7 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import s from './styles.module.css'
 import anonymous from '../assets/anonymous.png'
 import Profile from "./Profile";
+import cn from "classnames";
 
 const Header = () => {
     const {auth} = useContext(Context)
@@ -25,10 +26,11 @@ const Header = () => {
         <div className={s.login}>
             {user
                 ? <div>
-                    <button className={s.openProfileButton} onClick={() => setProfileForm(!profileForm)}>
-                        <img src={user.photoURL && !user.photoURL.includes("google")
-                            ? user.photoURL
-                            : anonymous} className={s.smallPhoto}
+                    <button className={cn({[s.openProfileButton]: !profileForm},
+                        {[s.closeProfileButton]: profileForm})}
+                            onClick={() => setProfileForm(!profileForm)}>
+                        <img src={user.photoURL && !user.photoURL.includes("google") ? user.photoURL : anonymous}
+                             className={s.smallPhoto}
                              alt={"profilePhoto"}/>
                         <text className={s.nickname}>
                             {user.displayName}

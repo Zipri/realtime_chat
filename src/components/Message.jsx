@@ -18,7 +18,7 @@ const MessageText = (props) => {
     const [emptyField, setEmptyField] = useState(false)
     const editM = () => {
         if (value !== '') {
-            props.editMessage(props.docId, value)
+            props.editMessage(props.docId, value.replace(/ +/g, ' ').trim())
             props.setEditMode(false)
         } else {
             setEmptyField(true)
@@ -28,8 +28,7 @@ const MessageText = (props) => {
         {props.editMode && props.delete
             ? <textarea className={cn(s.editMessage, {[s.emptyArea]:emptyField})}
                         value={value.toString()}
-                        onChange={(e) =>
-                            setValue(e.target.value.replace(/ +/g, ' ').trim())}
+                        onChange={(e) => setValue(e.target.value)}
                         autoFocus={true}
                         onKeyPress={(e) => {
                             if (e.key === 'Enter') editM()

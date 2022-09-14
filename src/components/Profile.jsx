@@ -29,16 +29,24 @@ const ProfileInfo = (props) => <div>
 const EditProfileInfo = (props) => {
     const inputStyle = {borderRadius: 10, marginBottom: 5, fontSize: 20, padding: 5, width: 'min-content'}
     const [login, setLogin] = useState(props.displayName);
+    const [photoURL, setPhotoURL] = useState(props.photoURL);
+    const saveNewInfo = () => props.saveInfo(login, photoURL)
 
     return <div>
+        <div>
+            <Input style={inputStyle}
+                   placeholder={"Photo URL"}
+                   value={photoURL}
+                   onChange={(e) => setPhotoURL(e.target.value)}/>
+        </div>
         <div>
             <Input style={inputStyle}
                    placeholder={"Edit your NickName"}
                    value={login}
                    onChange={(e) => setLogin(e.target.value)}/>
         </div>
-        <button className={s.saveNewProfileButton}
-                onClick={() => props.saveInfo(login)}>Save new information
+        <button className={s.saveNewProfileButton} onClick={saveNewInfo} disabled={!login}>
+            Save new information
         </button>
     </div>
 }
@@ -49,27 +57,44 @@ const Profile = () => {
     const [editMode, setEditMode] = useState(false)
 
     const photo = user.photoURL ? user.photoURL : anonymous
-    const photoURL = user.photoURL ? user.photoURL : "null"
-    const saveInfo = (login) => changeLogin(login).then(() => setEditMode(false))
-        .catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-        })
+    const photoURL = user.photoURL ? user.photoURL : ''
+    const saveInfo = (login, photoURL) => {
+        if (photoURL === '') {
+            changeLogin(login).then(() => setEditMode(false))
+                .catch((error) => {
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
+                })
+        } else {
+            changeLoginAndPhoto(login, photoURL).then(() => setEditMode(false))
+                .catch((error) => {
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
+                })
+        }
+    }
 
     const changeLogin = async (displayName) => {
         await firebase.auth().currentUser.updateProfile({displayName: displayName})
+    }
+    const changeLoginAndPhoto = async (displayName, photoURL) => {
+        await firebase.auth().currentUser.updateProfile({
+            displayName: displayName,
+            photoURL: photoURL
+        })
     }
 
     if (loading) return <Loader/>
     return <div className={s.profileWrapper}>
         {editMode
-            ? <EditProfileInfo saveInfo={saveInfo} displayName={user.displayName}/>
+            ? <EditProfileInfo saveInfo={saveInfo} displayName={user.displayName} photoURL={photoURL}/>
             : <ProfileInfo photoURL={photoURL} photo={photo}
                            displayName={user.displayName} email={user.email}/>}
         {user.providerData[0].providerId !== 'google.com'
             ? <>{editMode
-                ? <button className={s.editProfileButton}
+                ? <button className={s.closeEditProfileButton}
                           onClick={() => setEditMode(false)}>Close edit mode</button>
                 : <button className={s.editProfileButton}
                           onClick={() => setEditMode(true)}>Edit profile info</button>}</>
