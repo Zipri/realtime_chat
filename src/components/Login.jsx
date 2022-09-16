@@ -14,21 +14,14 @@ const Login = () => {
 
     const handleLoginGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
-        await auth.signInWithPopup(provider).catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-        })
+        await auth.signInWithPopup(provider)
+            .catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
     }
 
     const handleLoginEmail = () => LoginEmail(email, password)
     const LoginEmail = async (email, password) => {
         await auth.signInWithEmailAndPassword(email, password)
-            .catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-            })
+            .catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
     }
 
     return <div className={s.block}>

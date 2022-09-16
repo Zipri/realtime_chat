@@ -26,7 +26,7 @@ const MessageText = (props) => {
     }
     return <div>
         {props.editMode && props.delete
-            ? <textarea className={cn(s.editMessage, {[s.emptyArea]:emptyField})}
+            ? <textarea className={cn(s.editMessage, {[s.emptyArea]: emptyField})}
                         value={value.toString()}
                         onChange={(e) => setValue(e.target.value)}
                         autoFocus={true}
@@ -36,17 +36,19 @@ const MessageText = (props) => {
                         onBlur={(e) => editM()}/>
             : <div className={s.messageText}>
                 <text>{props.text}</text>
-                {props.delete && props.isTimeEditEnd && <div className={s.mButtons}>
-                    <Button style={{
-                        width: 45,
-                        borderRadius: 10,
-                        marginRight: 10
-                    }} onClick={() => props.setEditMode(true)}>✎</Button>
-                    <Button style={{
-                        width: 45,
-                        borderRadius: 10,
-                    }} onClick={() => props.deleteMessage(props.docId)}>🗑</Button>
-                </div>}
+                {props.delete && props.isTimeEditEnd &&
+                    <div className={s.mButtons}>
+                        <Button type="primary" style={{
+                            width: 45,
+                            borderRadius: 10,
+                            marginRight: 5
+                        }} onClick={() => props.setEditMode(true)}>✎</Button>
+                        <Button danger style={{
+                            width: 45,
+                            borderRadius: 10,
+                        }} onClick={() => props.deleteMessage(props.docId)}>🗑</Button>
+                    </div>
+                }
             </div>}
         <div className={s.underMessage}>
             <div className={s.name}>
@@ -68,7 +70,7 @@ const Message = (props) => {
     const isTimeEditEnd = date - messageDate < 30000
     const tm = new Date(props.createdAt * 1000)
     const timeDate = tm.getHours().toString() + ':' + tm.getMinutes().toString() + ' '
-        + tm.toDateString().split(' ')[1] + '/' + tm.toDateString().split(' ')[2]
+        + tm.toDateString().split(' ')[1] + '.' + tm.toDateString().split(' ')[2]
 
 
     return <div className={cn(s.messageContainer, {[s.myMessageContainer]: user.uid === props.id})}>

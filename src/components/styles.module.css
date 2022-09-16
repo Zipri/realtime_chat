@@ -245,13 +245,16 @@
 }
 
 .messageText text {
+    margin-right: 20px;
     max-width: 600px;
     height: 100%;
     word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .mButtons {
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 /*Profile*/

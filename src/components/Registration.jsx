@@ -24,12 +24,7 @@ const Registration = () => {
         await auth.createUserWithEmailAndPassword(email, password)
             .then(({user}) => {
                 user.updateProfile({displayName: login})
-            })
-            .catch((error) => {
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-            })
+            }).catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
     }
 
 

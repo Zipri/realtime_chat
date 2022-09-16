@@ -28,12 +28,13 @@ const Chat = () => {
 
     const deleteMessage = (docId) => {
         firestore.collection('messages').doc(docId).delete()
+            .catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
     }
 
     const editMessage = (docId, text) => {
         firestore.collection('messages').doc(docId).update({
             text: text
-        })
+        }).catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
     }
 
     const handleSendMessage = () => {
@@ -43,7 +44,7 @@ const Chat = () => {
             photoURL: user.photoURL,
             text: value.replace(/ +/g, ' ').trim(),
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        })
+        }).catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
         setValue('');
     }
 

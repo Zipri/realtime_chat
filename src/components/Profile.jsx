@@ -62,20 +62,12 @@ const Profile = (props) => {
         if (photoURL === '') {
             props.setDisplayName(login)
             changeLogin(login).then(() => setEditMode(false))
-                .catch((error) => {
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-                })
+                .catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
         } else {
             props.setDisplayName(login)
             props.setPhotoURL(photoURL)
             changeLoginAndPhoto(login, photoURL).then(() => setEditMode(false))
-                .catch((error) => {
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
-                })
+                .catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
         }
     }
 
