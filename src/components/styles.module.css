@@ -257,6 +257,27 @@
     margin-right: 0;
 }
 
+.mButtons button {
+    width: 45px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+.mEditButtons {
+    border: 1px dashed #49b79d;
+    margin-right: 5px;
+    margin-bottom: 2px;
+}
+.mEditButtons:hover {
+    border: 1px solid #49b79d;
+}
+.mDeleteButtons {
+    border: 1px dotted red;
+}
+.mDeleteButtons:hover {
+    border: 1px solid red;
+}
+
 /*Profile*/
 .profileWrapper {
     background-color: #49b79d;
@@ -268,8 +289,8 @@
     padding: 20px;
 
     position: absolute;
-    left: 5%;
-    top: 7%;
+    top: 60px;
+    right: 109px;
 }
 .userPhotoBody {
     display: flex;
@@ -366,6 +387,8 @@
 
 .linkEditProfile {
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 .linkEditProfile a {

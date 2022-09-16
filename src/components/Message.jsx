@@ -38,15 +38,8 @@ const MessageText = (props) => {
                 <text>{props.text}</text>
                 {props.delete && props.isTimeEditEnd &&
                     <div className={s.mButtons}>
-                        <Button type="primary" style={{
-                            width: 45,
-                            borderRadius: 10,
-                            marginRight: 5
-                        }} onClick={() => props.setEditMode(true)}>✎</Button>
-                        <Button danger style={{
-                            width: 45,
-                            borderRadius: 10,
-                        }} onClick={() => props.deleteMessage(props.docId)}>🗑</Button>
+                        <button className={s.mEditButtons} onClick={() => props.setEditMode(true)}>✎</button>
+                        <button className={s.mDeleteButtons} onClick={() => props.deleteMessage(props.docId)}>🗑</button>
                     </div>
                 }
             </div>}

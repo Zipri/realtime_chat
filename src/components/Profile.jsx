@@ -9,8 +9,10 @@ import {Button, Input} from "antd";
 const ProfileInfo = (props) => <div>
     <div>
         {props.photoURL.includes("google")
-            ? <div className={s.noGooglePhoto}>
-                There is some problem with google photo in Russia now so you can't see your avatar
+            ? <div className={s.userPhotoBody}>
+                <div className={s.noGooglePhoto}>
+                    There is some problem with google photo in Russia now so you can't see your avatar
+                </div>
             </div>
             : <div className={s.userPhotoBody}>
                 <img src={props.photo}

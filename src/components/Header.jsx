@@ -41,7 +41,10 @@ const Header = (props) => {
                         </text>
                     </button>
                     <button className={s.headerButton}
-                            onClick={() => props.auth.signOut()}>Exit
+                            onClick={() => {
+                                setProfileForm(false)
+                                props.auth.signOut()
+                            }}>Exit
                     </button>
                 </div>
                 : <button className={s.headerButton}
