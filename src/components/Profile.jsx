@@ -51,7 +51,7 @@ const EditProfileInfo = (props) => {
     </div>
 }
 
-const Profile = () => {
+const Profile = (props) => {
     const {firebase, auth, firestore} = useContext(Context)
     const [user, loading] = useAuthState(auth)
     const [editMode, setEditMode] = useState(false)
@@ -60,6 +60,7 @@ const Profile = () => {
     const photoURL = user.photoURL ? user.photoURL : ''
     const saveInfo = (login, photoURL) => {
         if (photoURL === '') {
+            props.setDisplayName(login)
             changeLogin(login).then(() => setEditMode(false))
                 .catch((error) => {
                     let errorCode = error.code;
@@ -67,6 +68,8 @@ const Profile = () => {
                     alert(`Oops, something went wrong\n${errorCode}: \n${errorMessage}`)
                 })
         } else {
+            props.setDisplayName(login)
+            props.setPhotoURL(photoURL)
             changeLoginAndPhoto(login, photoURL).then(() => setEditMode(false))
                 .catch((error) => {
                     let errorCode = error.code;

@@ -17,15 +17,18 @@ const App = () => {
 
     if (loading) return <Loader/>
     return <div className="App">
-        <Header/>
+        <Header photoURL={user ? user.photoURL : null} displayName={user ? user.displayName : null}
+                user={user} auth={auth}/>
         <AppRouter/>
     </div>
 };
 
-//TODO максимальная длянна логина
-//TODO шаблон почты првоерка
+
 //TODO добавить новых провайдеров
 //TODO добавить смену темы
 //TODO отлавливать ошибки сообщений
-
+//TODO сброс пароля
+//TODO плавающее окно профиля с сохарнением координат в файербейс
+//TODO А если вставить перенос строки, то чат его проигнорирует и сохранит сообщение в одну строку.
+//TODO добавить статус "изменино"
 export default App;

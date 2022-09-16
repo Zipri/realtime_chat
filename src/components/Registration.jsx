@@ -11,7 +11,15 @@ const Registration = () => {
     const {auth} = useContext(Context)
 
 
-    const handleRegistrationEmail = () => RegistrationEmail(email, password, login)
+    const handleRegistrationEmail = () => {
+        const min = 2
+        const max = 25
+        if (login.length < min || login.length > max || login.includes(' ')) {
+            alert(`Check your Login: the login cannot contain spaces, be less than ${min} or more than ${max} characters)`)
+        } else {
+            return RegistrationEmail(email, password, login)
+        }
+    }
     const RegistrationEmail = async (email, password, login) => {
         await auth.createUserWithEmailAndPassword(email, password)
             .then(({user}) => {
