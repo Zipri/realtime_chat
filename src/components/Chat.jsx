@@ -16,6 +16,7 @@ const Chat = () => {
     const endMessagesRef = React.createRef()
     const scrollToBottom = () => endMessagesRef.current?.scrollIntoView()
 
+    const [spacesString, setSpacesString] = useState(false)
     const {firebase, auth, firestore} = useContext(Context)
     const [user] = useAuthState(auth)
     const [value, setValue] = useState(null)
@@ -38,14 +39,20 @@ const Chat = () => {
     }
 
     const handleSendMessage = () => {
-        firestore.collection('messages').add({
-            uid: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-            text: value.replace(/ +/g, ' ').trim(),
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        }).catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
-        setValue('');
+        if (value.match(/^\s*$/)) {
+            setSpacesString(true)
+            setValue('String cannot consist only of spaces')
+        } else {
+            setSpacesString(false)
+            firestore.collection('messages').add({
+                uid: user.uid,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                text: value.replace(/ +/g, ' ').trim(),
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            }).catch((error) => alert(`Oops, something went wrong\n${error.code}: \n${error.message}`))
+            setValue('')
+        }
     }
 
     if (loading) return <Loader/>
@@ -71,7 +78,7 @@ const Chat = () => {
         </div>
         <div className={s.sendBlock}>
             <textarea placeholder="Write your message here..."
-                      className={s.sendTextArea}
+                      className={cn(s.sendTextArea, {[s.sendTextAreaError]: spacesString})}
                       value={value}
                       onChange={(e) => setValue(e.target.value)}/>
             <button className={cn(s.sendButton, {[s.blockedButton]: !value})}

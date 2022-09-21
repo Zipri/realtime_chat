@@ -5,7 +5,6 @@ import {useAuthState} from "react-firebase-hooks/auth";
 
 import s from './styles.module.css'
 import cn from "classnames";
-import {Button} from "antd";
 
 const PhotoAndName = (props) => <div>
     <img src={props.photo}
@@ -25,7 +24,7 @@ const MessageText = (props) => {
         }
     }
     return <div>
-        {props.editMode && props.delete
+        {props.editMode
             ? <textarea className={cn(s.editMessage, {[s.emptyArea]: emptyField})}
                         value={value.toString()}
                         onChange={(e) => setValue(e.target.value)}
@@ -35,13 +34,16 @@ const MessageText = (props) => {
                         }}
                         onBlur={(e) => editM()}/>
             : <div className={s.messageText}>
-                <text>{props.text}</text>
-                {props.delete && props.isTimeEditEnd &&
-                    <div className={s.mButtons}>
-                        <button className={s.mEditButtons} onClick={() => props.setEditMode(true)}>✎</button>
-                        <button className={s.mDeleteButtons} onClick={() => props.deleteMessage(props.docId)}>🗑</button>
-                    </div>
-                }
+                <div>
+                    <text>{props.text}</text>
+                </div>
+                <div>
+                    {props.delete && props.isTimeEditEnd &&
+                        <div className={s.mButtons}>
+                            <button className={s.mEditButtons} onClick={() => props.setEditMode(true)}>✎</button>
+                            <button className={s.mDeleteButtons} onClick={() => props.deleteMessage(props.docId)}>🗑</button>
+                        </div>}
+                </div>
             </div>}
         <div className={s.underMessage}>
             <div className={s.name}>
